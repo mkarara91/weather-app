@@ -1,15 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from '../../app/store';
+import {shallow} from "enzyme";
+import {Provider} from 'react-redux';
+import {store} from '../../app/store';
 import App from '../../component/App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-
-  expect(getByText(/learn/i)).toBeInTheDocument();
+test("app should match snapshot", () => {
+    const c = shallow(<Provider store={store}>
+        <App/>
+    </Provider>);
+    expect(c).toMatchSnapshot();
 });
